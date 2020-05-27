@@ -16,7 +16,7 @@ const knexSnakeCaseMapper = require("objection").knexSnakeCaseMappers;
 
 //b650e602d97609:fbba058c@us-cdbr-east-05.cleardb.net/heroku_abc599144908cf4?reconnect=true
 
-mysql: mysql: module.exports = {
+module.exports = {
   development: {
     client: "mysql",
     connection: {
