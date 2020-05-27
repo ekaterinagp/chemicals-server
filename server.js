@@ -18,9 +18,9 @@ app.use(cors());
 
 // app.use("/static", express.static("public"));
 
-app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "/build/index.html"));
-});
+// app.get("/*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "/build/index.html"));
+// });
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
