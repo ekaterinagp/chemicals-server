@@ -13,16 +13,19 @@ const knexSnakeCaseMapper = require("objection").knexSnakeCaseMappers;
 //   },
 //   ...knexSnakeCaseMapper(),
 // };
+//b650e602d97609:fbba058c@us-cdbr-east-05.cleardb.net/heroku_abc599144908cf4?reconnect=true
 
-module.exports = {
+mysql: module.exports = {
   development: {
     client: "mysql",
-    connection: {
-      host: "ekaterinagp.dk.mysql",
-      database: "ekaterinagp_dkchemicals",
-      user: "ekaterinagp_dkchemicals",
-      password: "123456",
-    },
+    connection:
+      "mysql://b650e602d97609:fbba058c@us-cdbr-east-05.cleardb.net/heroku_abc599144908cf4?reconnect=true",
+    //  {
+    //   host: "ekaterinagp.dk.mysql",
+    //   database: "ekaterinagp_dkchemicals",
+    //   user: "ekaterinagp_dkchemicals",
+    //   password: "123456",
+    // },
   },
   ...knexSnakeCaseMapper(),
 };
