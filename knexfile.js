@@ -20,6 +20,11 @@ mysql: module.exports = {
     client: "mysql",
     connection:
       "mysql://b650e602d97609:fbba058c@us-cdbr-east-05.cleardb.net/heroku_abc599144908cf4?reconnect=true",
+    migrations: {
+      tableName: "migrations",
+    },
+    ssl: true,
+    debug: true,
     //  {
     //   host: "ekaterinagp.dk.mysql",
     //   database: "ekaterinagp_dkchemicals",
