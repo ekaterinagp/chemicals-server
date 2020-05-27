@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 
-const port = process.env.PORT || 3000;
+const port = 3000;
 
 const cors = require("cors");
 // let allowedOrigins = ["http://localhost:3000", "http://ekaterinagp.dk"];
