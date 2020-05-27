@@ -14,16 +14,16 @@ const knexSnakeCaseMapper = require("objection").knexSnakeCaseMappers;
 //   ...knexSnakeCaseMapper(),
 // };
 
-//b650e602d97609:fbba058c@us-cdbr-east-05.cleardb.net/heroku_abc599144908cf4?reconnect=true
+//b30be2118083eb:f2ec8f0c@us-cdbr-east-05.cleardb.net/heroku_79d233133b30093?reconnect=true
 
 module.exports = {
   development: {
     client: "mysql",
     connection: {
       host: "us-cdbr-east-05.cleardb.net",
-      database: "heroku_abc599144908cf4",
-      user: "b650e602d97609",
-      password: "fbba058c",
+      database: "heroku_79d233133b30093",
+      user: "b30be2118083eb",
+      password: "f2ec8f0c",
     },
 
     // migrations: {
