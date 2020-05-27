@@ -2,6 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 
+const port = process.env.PORT || 3000;
+
 const cors = require("cors");
 // let allowedOrigins = ["http://localhost:3000", "http://ekaterinagp.dk"];
 const app = express();
@@ -38,9 +40,9 @@ app.use(processJobRoute);
 app.use(jobsRoute);
 app.use(chemicalsRoute);
 
-const server = app.listen(80, (error) => {
+const server = app.listen(port, (error) => {
   if (error) {
     console.log("Error running express", error);
   }
-  console.log("The server is running on port", server.address().port);
+  console.log("The server is running on port", port);
 });
