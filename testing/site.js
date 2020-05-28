@@ -35,7 +35,7 @@ class Site {
   }
   // getTotalNumberOfChemicals() {}
   processTicket(ticket) {
-    ticket.status = "pending";
+    // ticket.status = "pending";
     if (ticket.type === "incoming") {
       console.log("incoming");
       if (this.getRemainingCapacityOfSite() >= ticket.totalAmount) {
@@ -51,6 +51,9 @@ class Site {
           ticket.status = "Denied";
           return false;
         }
+      } else {
+        ticket.status = "Denied";
+        return false;
       }
     } else {
       const placementArray = this.dispatchChemicals(ticket);

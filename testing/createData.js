@@ -14,9 +14,12 @@ let ticket2 = new Ticket("incoming", { A: 7, C: 3 });
 let ticket3 = new Ticket("incoming", { C: 7 });
 let ticket4 = new Ticket("outgoing", { C: 4 });
 let ticket5 = new Ticket("outgoing", { A: 2 });
+let ticket12 = new Ticket("outgoing", { B: 2 });
 let ticket6 = new Ticket("incoming", { A: 5, C: 7 });
 let ticket7 = new Ticket("incoming", { B: 6, C: 1 });
 let ticket8 = new Ticket("incoming", { B: 5 });
+let ticket10 = new Ticket("incoming", { B: 5, C: 1 });
+let ticket11 = new Ticket("incoming", { B: 1, C: 2 });
 
 let aWarehouses = [];
 let aWarehouses1 = [];
@@ -138,10 +141,14 @@ const createData = async (site, ticket) => {
 // createData(site2, ticket6);
 // createData(site2, ticket1);
 // createData(site1, ticket1);
-createData(site1, ticket2);
+// createData(site1, ticket2);
 // createData(site1, ticket3);
 // createData(site1, ticket4);
 // createData(site1, ticket5);
 // createData(site1, ticket6);
 // createData(site2, ticket7);
+// createData(site1, ticket9);
+// createData(site1, ticket10);
+// createData(site1, ticket11);
 // createData(site2, ticket8);
+// createData(site2, ticket12);
