@@ -3,6 +3,11 @@ const moment = require("moment");
 
 const Job = require("../models/Job");
 
+router.get("/total", async (req, res) => {
+  const jobs = await Job.query();
+  return res.send(jobs);
+});
+
 router.get("/totaldelivery", async (req, res) => {
   const jobs = await Job.query().withGraphFetched("jobitem").where("type", "I");
 
@@ -66,6 +71,7 @@ router.get("/delivery", async (req, res) => {
     desc: "total",
     total: 0,
   };
+
   jobs.forEach((job) => {
     // console.log(job.jobitem);
     if (job.jobitem.chemical == "A") {
@@ -88,15 +94,18 @@ router.get("/delivery", async (req, res) => {
     desc: "today",
     total: 0,
   };
-  let todayDate = getDate();
+  // let todayDate = getDate();
+  let todayDate = moment().format("YYYY-MM-DD");
 
+  console.log(todayDate);
   jobs.forEach((job) => {
-    if (
-      todayDate.toString() ==
-      job.date.toString().substring(0, job.date.length - 14)
-    ) {
+    job.date = moment(job.date).format("YYYY-MM-DD");
+
+    if (todayDate == job.date) {
+      console.log(job);
       if (job.jobitem.chemical == "A") {
         todayDelivery.A = todayDelivery.A + job.jobitem.amount;
+        console.log(todayDelivery.A);
       }
       if (job.jobitem.chemical == "B") {
         todayDelivery.B = todayDelivery.B + job.jobitem.amount;
@@ -121,7 +130,8 @@ router.get("/delivery", async (req, res) => {
   let dateFrom = moment().subtract(7, "d").format("YYYY-MM-DD");
 
   jobs.forEach((job) => {
-    if (job.date.toString().substring(0, job.date.length - 9) > dateFrom) {
+    job.date = moment(job.date).format("YYYY-MM-DD");
+    if (job.date > dateFrom) {
       if (job.jobitem.chemical == "A") {
         weekDelivery.A = weekDelivery.A + job.jobitem.amount;
       }
@@ -147,6 +157,7 @@ router.get("/delivery", async (req, res) => {
   let month = getMonth();
 
   jobs.forEach((job) => {
+    job.date = moment(job.date).format("YYYY-MM-DD");
     if (
       month ==
       job.date.toString().charAt(5) + job.date.toString().charAt(6)
@@ -179,6 +190,7 @@ router.get("/dispatch", async (req, res) => {
     desc: "total",
     total: 0,
   };
+
   jobs.forEach((job) => {
     // console.log(job.jobitem);
     if (job.jobitem.chemical == "A") {
@@ -201,10 +213,11 @@ router.get("/dispatch", async (req, res) => {
     desc: "today",
     total: 0,
   };
-  let todayDate = getDate();
+  let todayDate = moment().format("YYYY-MM-DD");
 
   jobs.forEach((job) => {
-    if (todayDate == job.date.substring(0, job.date.length - 9)) {
+    job.date = moment(job.date).format("YYYY-MM-DD");
+    if (todayDate == job.date) {
       if (job.jobitem.chemical == "A") {
         todayDispatch.A = todayDispatch.A + job.jobitem.amount;
       }
@@ -231,7 +244,8 @@ router.get("/dispatch", async (req, res) => {
   let dateFrom = moment().subtract(7, "d").format("YYYY-MM-DD");
 
   jobs.forEach((job) => {
-    if (job.date.substring(0, job.date.length - 9) > dateFrom) {
+    job.date = moment(job.date).format("YYYY-MM-DD");
+    if (job.date > dateFrom) {
       if (job.jobitem.chemical == "A") {
         weekDispatch.A = weekDispatch.A + job.jobitem.amount;
       }
@@ -257,6 +271,7 @@ router.get("/dispatch", async (req, res) => {
   let month = getMonth();
 
   jobs.forEach((job) => {
+    job.date = moment(job.date).format("YYYY-MM-DD");
     if (month == job.date.charAt(5) + job.date.charAt(6)) {
       if (job.jobitem.chemical == "A") {
         monthDispatch.A = monthDispatch.A + job.jobitem.amount;
@@ -292,9 +307,26 @@ function getDate() {
 
   // current year
   let year = date_ob.getFullYear();
+  // console.log(typeof `${year}-${month}-${date}`);
 
-  return year + "-" + month + "-" + date;
+  return `${year}-${month}-${date}`;
 }
+
+// function getDate(){
+//   function formatDate(date) {
+//     var d = new Date(date),
+//         month = '' + (d.getMonth() + 1),
+//         day = '' + d.getDate(),
+//         year = d.getFullYear();
+
+//     if (month.length < 2)
+//         month = '0' + month;
+//     if (day.length < 2)
+//         day = '0' + day;
+
+//     return [year, month, day].join('-');
+// }
+// }
 
 function getMonth() {
   let date_ob = new Date();

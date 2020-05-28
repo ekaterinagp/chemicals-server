@@ -1,7 +1,9 @@
 const router = require("express").Router();
+const moment = require("moment");
 
 const Job = require("../models/Job");
 const Audit = require("../models/Audit");
+
 router.get("/jobs", async (req, res) => {
   const jobs = await Job.query();
   return res.status(200).send({ response: jobs });
@@ -30,7 +32,7 @@ router.get("/listChemical", async (req, res) => {
     jobObject = {
       chemical: job.jobitem.chemical,
       action: job.type == "I" ? "delivered" : "dispatched",
-      date: job.date,
+      date: moment(job.date).format("YYYY-MM-DD"),
       // date: job.date.substring(0, job.date.length - 9),
       warehouse: job.jobitem.warehouse_id,
       ticket: job.id,
@@ -58,7 +60,7 @@ router.get("/audit", async (req, res) => {
       amount: a.amount,
       warehouse: a.warehouse_id,
       site: a.site_id,
-      date: a.date,
+      date: moment(a.date).format("YYYY-MM-DD"),
       // a.date.toString().substr(0, a.date.length - 9),
       // date: a.date.substring(0, a.date.length - 9),
     };
