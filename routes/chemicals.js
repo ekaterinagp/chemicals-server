@@ -91,7 +91,7 @@ router.get("/delivery", async (req, res) => {
   let todayDate = getDate();
 
   jobs.forEach((job) => {
-    if (todayDate == job.date.substring(0, job.date.length - 9)) {
+    if (todayDate == job.date.substr(0, job.date.length - 9)) {
       if (job.jobitem.chemical == "A") {
         todayDelivery.A = todayDelivery.A + job.jobitem.amount;
       }

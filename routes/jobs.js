@@ -30,7 +30,8 @@ router.get("/listChemical", async (req, res) => {
     jobObject = {
       chemical: job.jobitem.chemical,
       action: job.type == "I" ? "delivered" : "dispatched",
-      date: job.date.substring(0, job.date.length - 9),
+      date: job.date,
+      // date: job.date.substring(0, job.date.length - 9),
       warehouse: job.jobitem.warehouse_id,
       ticket: job.id,
     };
