@@ -41,29 +41,30 @@ router.get("/listChemical", async (req, res) => {
 
 router.get("/audit", async (req, res) => {
   const audit = await Audit.query();
-  // const arrayOfItems = [];
-  // let one = {
-  //   type: null,
-  //   chemical: null,
-  //   amount: null,
-  //   warehouse: null,
-  //   site: null,
-  //   date: null,
-  // };
-  // audit.forEach((a) => {
-  //   one = {
-  //     type: a.type == "I" ? "delivered" : "dispatched",
-  //     chemical: a.chemical,
-  //     amount: a.amount,
-  //     warehouse: a.warehouse_id,
-  //     site: a.site_id,
-  //     date: a.date.substring(0, a.date.length - 9),
-  //   };
-  //   arrayOfItems.push(one);
-  // });
+  const arrayOfItems = [];
+  let one = {
+    type: null,
+    chemical: null,
+    amount: null,
+    warehouse: null,
+    site: null,
+    date: null,
+  };
+  audit.forEach((a) => {
+    one = {
+      type: a.type == "I" ? "delivered" : "dispatched",
+      chemical: a.chemical,
+      amount: a.amount,
+      warehouse: a.warehouse_id,
+      site: a.site_id,
+      date: a.date,
+      // date: a.date.substring(0, a.date.length - 9),
+    };
+    arrayOfItems.push(one);
+  });
 
-  // res.send(arrayOfItems);
-  res.send(audit);
+  res.send(arrayOfItems);
+  // res.send(audit);
 });
 
 module.exports = router;
