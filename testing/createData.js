@@ -22,7 +22,9 @@ let aWarehouses = [];
 let aWarehouses1 = [];
 
 const fetchWarehouses = async () => {
-  const response = await axios("http://localhost/warehouses");
+  const response = await axios(
+    "https://pacific-lake-54801.herokuapp.com/warehouses"
+  );
   const warehouses = await response.data;
   console.log({ warehouses });
   warehouses.forEach((warehouse) => {
@@ -52,7 +54,9 @@ const assignWarehouses = async () => {
 // console.log(ticket2)
 
 const fetchWarehouseStock = async (id) => {
-  const response = await axios(`http://localhost/currentstock/${id}`);
+  const response = await axios(
+    `https://pacific-lake-54801.herokuapp.com/currentstock/${id}`
+  );
   const warehouseStock = await response.data;
   console.log(warehouseStock);
   let stockObj = {};
@@ -111,7 +115,10 @@ const createData = async (site, ticket) => {
       console.log("true");
       console.log(job);
       //     //  TODO: send job to db, and update warehouses
-      const response = await axios.post(`http://localhost/processJob`, job);
+      const response = await axios.post(
+        `https://pacific-lake-54801.herokuapp.com/processjob`,
+        job
+      );
       console.log(response);
       console.log("yes");
     } else {
