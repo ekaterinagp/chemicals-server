@@ -144,7 +144,10 @@ router.get("/delivery", async (req, res) => {
   let month = getMonth();
 
   jobs.forEach((job) => {
-    if (month == job.date.charAt(5) + job.date.charAt(6)) {
+    if (
+      month ==
+      job.date.toString().charAt(5) + job.date.toString().charAt(6)
+    ) {
       if (job.jobitem.chemical == "A") {
         monthDelivery.A = monthDelivery.A + job.jobitem.amount;
       }
