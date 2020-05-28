@@ -57,7 +57,7 @@ router.get("/audit", async (req, res) => {
       amount: a.amount,
       warehouse: a.warehouse_id,
       site: a.site_id,
-      date: a.date.toString().substr(0, a.date.length - 14),
+      date: a.date.toString().substring(0, a.date.length - 14),
       // a.date.toString().substr(0, a.date.length - 9),
       // date: a.date.substring(0, a.date.length - 9),
     };
